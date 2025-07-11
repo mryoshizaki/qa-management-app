@@ -23,19 +23,64 @@
 
             <div class="content">
                 <div id="dashboard" class="section active">
-                    Dashboard Content
+                    <h1>Dashboard</h1>
                 </div>
 
                 <div id="testcases" class="section">
-                    Test Case Content
+                    <h1>Test Cases</h1>
+                    <div id="test-form">
+                        <h3>Add Test Case</h3>
+                    <div class="form-group">
+                        <label>System Under Test</label>
+                        <input type="text" id="testSystem" placeholder="e.g. BPS, NClaims, etc.">
+                    </div>
+                    <div class="form-group">
+                        <label>System Version</label>
+                        <input type="text" id="testSystemVersion" placeholder="e.g. 1.0.0, v2.1.3, etc.">
+                    </div>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="testTitle" placeholder="Or leave blank for auto-generated title">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="testDescription"></textarea>
+                    </div>
+                    <div class="grid">
+                        <div class="form-group">
+                            <label>Type</label>
+                            <select id="testType">
+                                <option value="web">Web App</option>
+                                <option value="api">API</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Priority</label>
+                            <select id="testPriority">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Steps</label>
+                        <textarea id="testSteps" placeholder="1. Step one&#10;2. Step two&#10;3. Step three"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Expected Result</label>
+                        <textarea id="testExpected"></textarea>
+                    </div>
+                    <button class="btn" onclick="saveTest()">Save Test Case</button>
+                    <button class="btn btn-danger" onclick="hideTestForm()">Cancel</button>
                 </div>
 
                 <div id="bugreports" class="section">
-                    Bug reports Content
+                    <h1>Bug Reports</h1>
                 </div>
 
                 <div id="settings" class="section">
-                    Settings Content
+                    <h1>Settings</h1>
                 </div>
             </div>
         </div>
