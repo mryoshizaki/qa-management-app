@@ -22,12 +22,29 @@
             </div>
 
             <div class="content">
+                <!-- Dashboard Section -->
                 <div id="dashboard" class="section active">
                     <h1>Dashboard</h1>
                 </div>
 
+                <!-- Test Cases Section -->
                 <div id="testcases" class="section">
                     <h1>Test Cases</h1>
+
+                    <div class="search-filter">
+                        <input type="text" id="testSearch" placeholder="Search test cases...">
+                        <select id="testStatusFilter">
+                            <option value="">All Statuses</option>
+                            <option value="pending">Pending</option>
+                            <option value="pass">Pass</option>
+                            <option value="fail">Fail</option>
+                        </select>
+                        <select id="testTypeFilter">
+                            <option value="">All Types</option>
+                            <option value="web">Web App</option>
+                            <option value="api">API</option>
+                        </select>
+                    </div>
 
                     <button class="btn" onclick="showTestForm()">Add New Test Case</button>
 
@@ -76,15 +93,19 @@
                     </div>
                     <button class="btn" onclick="saveTest()">Save Test Case</button>
                     <button class="btn btn-danger" onclick="hideTestForm()">Cancel</button>
-                </div>
 
-                <div id="bugreports" class="section">
-                    <h1>Bug Reports</h1>
+                    <div id="testList" class="grid" style="margin-top: 20px;"></div>
                 </div>
+            </div>
 
-                <div id="settings" class="section">
-                    <h1>Settings</h1>
-                </div>
+            <!-- Bug Reports Section -->
+            <div id="bugreports" class="section">
+                <h1>Bug Reports</h1>
+            </div>
+
+            <!-- Settinggs Section -->
+            <div id="settings" class="section">
+                <h1>Settings</h1>
             </div>
         </div>
 

@@ -10,8 +10,12 @@ function showSection(sectionId) {
 
 function showTestForm(){
     document.getElementById('test-form').style.display = 'block';
-};
+}
 
 function hideTestForm(){
     document.getElementById('test-form').style.display = '';
+}
+
+function saveTest(){
+
 }
