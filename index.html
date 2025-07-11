@@ -15,27 +15,27 @@
             </header>
 
             <div class="navbar">
-                <li>Dashboard</li>
-                <li>Test Cases</li>
-                <li>Bug Reports</li>
-                <li>Settings</li>
+                <div class="tab active" onclick="showSection('dashboard')">Dashboard</div>
+                <div class="tab" onclick="showSection('testcases')">Test Cases</div>
+                <div class="tab" onclick="showSection('bugreports')">Bug Reports</div>
+                <div class="tab" onclick="showSection('settings')">Settings</div>
             </div>
 
             <div class="content">
-                <div id="dashboard" class="section">
-
+                <div id="dashboard" class="section active">
+                    Dashboard Content
                 </div>
 
                 <div id="testcases" class="section">
-
+                    Test Case Content
                 </div>
 
                 <div id="bugreports" class="section">
-
+                    Bug reports Content
                 </div>
 
                 <div id="settings" class="section">
-
+                    Settings Content
                 </div>
             </div>
         </div>
