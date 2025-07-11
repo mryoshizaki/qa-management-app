@@ -50,4 +50,8 @@ function saveTest(){
         status: 'pending',
         created: new Date().toISOString()
     }
+
+    testCases.push(testCase);
+
+    localStorage.setItem('qaTests', JSON.stringify(testCases));
 }
