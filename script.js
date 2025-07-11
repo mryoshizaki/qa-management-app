@@ -6,5 +6,12 @@ function showSection(sectionId) {
         document.getElementById(sectionId).classList.add('active');
         e.target.classList.add('active');
     });
+}
 
+function showTestForm(){
+    document.getElementById('test-form').style.display = 'block';
+};
+
+function hideTestForm(){
+    document.getElementById('test-form').style.display = '';
 }

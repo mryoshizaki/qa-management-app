@@ -5,3 +5,7 @@
 .section.active {
     display: block;
 }
+
+#test-form{
+    display: none;
+}
