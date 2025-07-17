@@ -1,4 +1,5 @@
 let testCases = [];
+let uid = null;
 
 // Initialize app
 window.addEventListener('DOMContentLoaded', function() {
@@ -12,8 +13,6 @@ function loadData(){
     if (savedTests) {
         testCases = JSON.parse(savedTests);
     }
-
-    console.log ('loading', testCases);
 }
 
 function showSection(sectionId) {
@@ -64,11 +63,14 @@ function saveTest(){
         steps: document.getElementById('testSteps').value,
         expected: document.getElementById('testExpected').value,
         status: 'pending',
-        created: new Date().toISOString()
+        uid: !uid ? testCases.length : uid
     }
-
-    testCases.push(testCase);
-
+    if (uid == null){
+        testCases.push(testCase);
+    }else{
+        testCases[uid] = testCase;
+    }
+    
     localStorage.setItem('qaTests', JSON.stringify(testCases));
 
     renderTestCases();
@@ -77,27 +79,45 @@ function saveTest(){
 function renderTestCases(){
     const testList = document.getElementById('testList');
 
-    if(testCases.length == 0){
+    if(testCases.length === 0){
         testList.innerHTML = '<div class="empty-state"><h3>No test cases yet</h3></div>';
-    }
-
-    testList.innerHTML = testCases.map(test => `
-        <div class="item">
-            <h3>${test.title}</h3>
-            <p><strong>System:</strong> ${test.system || 'Not specified'}</p>
-            <p><strong>Version:</strong> ${test.systemVersion || 'Not specified'}</p>
-            <p><strong>Type:</strong> ${test.type.toUpperCase()}</p>
-            <p><strong>Priority:</strong> ${test.priority}</p>
-            <p><strong>Status:</strong> <span class="status ${test.status}">${test.status}</span></p>
-            <p><strong>Description:</strong> ${test.description || 'No description'}</p>
-            <p><strong>Steps:</strong> ${test.steps || 'No steps'}</p>
-            <p><strong>Expected Result:</strong> ${test.expected || 'No expected result'}</p>
-            <div class="item-actions">
-                <button class="btn btn-success" onclick="updateTestStatus(${test.id}, 'pass')">Pass</button>
-                <button class="btn btn-danger" onclick="updateTestStatus(${test.id}, 'fail')">Fail</button>
-                <button class="btn" onclick="editTest(${test.id})">Edit</button>
-                <button class="btn btn-danger" onclick="deleteTest(${test.id})">Delete</button>
+    }else{
+        testList.innerHTML = testCases.map((test, index) => `
+            <div class="item">
+                <h3>${test.title}</h3>
+                <p><strong>System:</strong> ${test.system || 'Not specified'}</p>
+                <p><strong>Version:</strong> ${test.version || 'Not specified'}</p>
+                <p><strong>Type:</strong> ${test.type.toUpperCase()}</p>
+                <p><strong>Priority:</strong> ${test.priority}</p>
+                <p><strong>Status:</strong> <span class="status ${test.status}">${test.status}</span></p>
+                <p><strong>Description:</strong> ${test.description || 'No description'}</p>
+                <p><strong>Steps:</strong> ${test.steps || 'No steps'}</p>
+                <p><strong>Expected Result:</strong> ${test.expected || 'No expected result'}</p>
+                <div class="item-actions">
+                    <button class="btn btn-success" onclick="updateTestStatus(${index}, 'pass')">Pass</button>
+                    <button class="btn btn-danger" onclick="updateTestStatus(${index}, 'fail')">Fail</button>
+                    <button class="btn" onclick="editTest(${index})">Edit</button>
+                    <button class="btn btn-danger" onclick="deleteTest(${index})">Delete</button>
+                </div>
             </div>
-        </div>
-    `).join('');
+        `).join('');
+    }
+}
+
+function editTest(id){
+    const test = testCases[id];
+    uid = test.uid;
+    // console.log(uid);
+    if (test) {
+        document.getElementById('testTitle').value = test.title;
+        document.getElementById('testDescription').value = test.description;
+        document.getElementById('testType').value = test.type;
+        document.getElementById('testPriority').value = test.priority;
+        document.getElementById('testSteps').value = test.steps;
+        document.getElementById('testExpected').value = test.expected;
+        document.getElementById('testSystem').value = test.system || '';
+        document.getElementById('testSystemVersion').value = test.version || '';
+        
+        showTestForm();
+    }
 }
