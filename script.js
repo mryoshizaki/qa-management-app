@@ -74,8 +74,7 @@ function saveTest(){
         testCases[uid] = testCase;
     }
     
-    localStorage.setItem('qaTests', JSON.stringify(testCases));
-
+    saveData();
     renderTestCases();
     hideTestForm();
 }
@@ -125,12 +124,26 @@ function editTest(id){
     }
 }
 
+
+
 function updateTestStatus(id, status){
     const test = testCases[id];
 
     if (test) {
         test.status = status;
+        saveData();
+        renderTestCases();
     }
+}
+
+function deleteTest(id){
+    if (confirm('Are you sure you want to delete this test case?')) {
+        testCases.splice(id, 1);
+        saveData();
+        renderTestCases();
+    }
+}
+
+function saveData(){
     localStorage.setItem('qaTests', JSON.stringify(testCases));
-    renderTestCases();
 }
