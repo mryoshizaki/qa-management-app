@@ -65,7 +65,8 @@ function saveTest(){
         status: 'pending',
         uid: !uid ? testCases.length : uid
     }
-    if (uid == null){
+    
+    if (uid === null){
         testCases.push(testCase);
     }else{
         testCases[uid] = testCase;
