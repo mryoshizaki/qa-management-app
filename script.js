@@ -31,6 +31,7 @@ function showTestForm(){
 
 function hideTestForm(){
     document.getElementById('test-form').style.display = '';
+    clearTestForm();
 }
 
 function clearTestForm(){
@@ -73,11 +74,10 @@ function saveTest(){
         testCases[uid] = testCase;
     }
     
-    console.log(uid);
     localStorage.setItem('qaTests', JSON.stringify(testCases));
 
     renderTestCases();
-    clearTestForm();
+    hideTestForm();
 }
 
 function renderTestCases(){
@@ -111,7 +111,6 @@ function renderTestCases(){
 function editTest(id){
     const test = testCases[id];
     uid = test.uid;
-    // console.log(uid);
     if (test) {
         document.getElementById('testTitle').value = test.title;
         document.getElementById('testDescription').value = test.description;
@@ -124,4 +123,14 @@ function editTest(id){
         
         showTestForm();
     }
+}
+
+function updateTestStatus(id, status){
+    const test = testCases[id];
+
+    if (test) {
+        test.status = status;
+    }
+    localStorage.setItem('qaTests', JSON.stringify(testCases));
+    renderTestCases();
 }
