@@ -42,6 +42,7 @@ function clearTestForm(){
     document.getElementById('testPriority').value = 'low';
     document.getElementById('testSteps').value = '';
     document.getElementById('testExpected').value = '';
+    uid = null;
 }
 
 function saveTest(){
@@ -63,7 +64,7 @@ function saveTest(){
         steps: document.getElementById('testSteps').value,
         expected: document.getElementById('testExpected').value,
         status: 'pending',
-        uid: !uid ? testCases.length : uid
+        uid: (uid === null) ? testCases.length : uid
     }
     
     if (uid === null){
@@ -72,9 +73,11 @@ function saveTest(){
         testCases[uid] = testCase;
     }
     
+    console.log(uid);
     localStorage.setItem('qaTests', JSON.stringify(testCases));
 
     renderTestCases();
+    clearTestForm();
 }
 
 function renderTestCases(){
