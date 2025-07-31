@@ -56,7 +56,7 @@
                     </div>
                     <div class="form-group">
                         <label>System Version</label>
-                        <input type="text" id="testSystemVersion" placeholder="e.g. 1.0.0, v2.1.3, etc.">
+                        <input type="text" id="testSystemVersion" placeholder="e.g. 1.0.0, 2.1.3, etc.">
                     </div>
                     <div class="form-group">
                         <label>Title</label>
@@ -102,6 +102,79 @@
             <!-- Bug Reports Section -->
             <div id="bugreports" class="section">
                 <h1>Bug Reports</h1>
+                <div class="search-filter">
+                    <input type="text" id="bugSearch" placeholder="Search bugs...">
+                    <select id="bugStatusFilter">
+                        <option value="">All Statuses</option>
+                        <option value="open">Open</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="closed">Closed</option>
+                    </select>
+                    <select id="bugSeverityFilter">
+                        <option value="">All Severities</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                        <option value="critical">Critical</option>
+                    </select>
+                </div>
+                
+                <button class="btn" onclick="showBugForm()">Report New Bug</button>
+
+                <div id="bug-form">
+                    <h3>Report Bug</h3>
+                    <div class="form-group">
+                        <label>System Under Test</label>
+                        <input type="text" id="bugSystem" placeholder="e.g. MyWebApp, Payment API, etc.">
+                    </div>
+                    <div class="form-group">
+                        <label>System Version</label>
+                        <input type="text" id="bugSystemVersion" placeholder="e.g. 1.0.0, 2.1.3, etc.">
+                    </div>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="bugTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="bugDescription"></textarea>
+                    </div>
+                    <div class="grid">
+                        <div class="form-group">
+                            <label>Severity</label>
+                            <select id="bugSeverity">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                                <option value="critical">Critical</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Type</label>
+                            <select id="bugType">
+                                <option value="web">Web App</option>
+                                <option value="api">API</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Steps to Reproduce</label>
+                        <textarea id="bugSteps"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Expected Result</label>
+                        <textarea id="bugExpected"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Actual Result</label>
+                        <textarea id="bugActual"></textarea>
+                    </div>
+                    <button class="btn" onclick="saveBug()">Save Bug Report</button>
+                    <button class="btn" onclick="clearBugForm()">Clear Form</button>
+                    <button class="btn btn-danger" onclick="hideBugForm()">Cancel</button>
+                </div>
+
+                <div id="bugList" class="grid" style="margin-top: 20px;"></div>
             </div>
 
             <!-- Settinggs Section -->
