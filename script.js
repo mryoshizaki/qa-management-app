@@ -98,7 +98,7 @@ function renderTestCases(){
                 <p><strong>System:</strong> ${test.system || 'Not specified'}</p>
                 <p><strong>Version:</strong> ${test.version || 'Not specified'}</p>
                 <p><strong>Type:</strong> ${test.type.toUpperCase()}</p>
-                <p><strong>Priority:</strong> ${test.priority}</p>
+                <p><strong>Priority:</strong> <span class="priority ${test.priority}">${test.priority}</span></p>
                 <p><strong>Status:</strong> <span class="status ${test.status}">${test.status}</span></p>
                 <p><strong>Description:</strong> ${test.description || 'No description'}</p>
                 <p><strong>Steps:</strong> ${test.steps || 'No steps'}</p>
@@ -190,7 +190,7 @@ function saveBug(){
         steps: document.getElementById('bugSteps').value,
         expected: document.getElementById('testExpected').value,
         actual: document.getElementById('bugActual').value,
-        status: 'in-progress',
+        status: 'open',
         uid: (uid === null) ? bugReports.length : uid
     }
     
@@ -217,7 +217,7 @@ function renderBugReports(){
                 <p><strong>System:</strong> ${bug.system || 'Not specified'}</p>
                 <p><strong>Version:</strong> ${bug.systemVersion || 'Not specified'}</p>
                 <p><strong>Type:</strong> ${bug.type.toUpperCase()}</p>
-                <p><strong>Priority:</strong> ${bug.severity}</p>
+                <p><strong>Priority:</strong><span class="severity ${bug.severity}">${bug.severity}</span></p>
                 <p><strong>Status:</strong> <span class="status ${bug.status}">${bug.status}</span></p>
                 <p><strong>Description:</strong> ${bug.description || 'No description'}</p>
                 <p><strong>Steps:</strong> ${bug.steps || 'No steps'}</p>
